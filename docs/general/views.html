@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./../css/SyntaxHighlighter.css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Views</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Views</div>
+		<div class="spacer">.</div>
+		
+		A view contains all the display elements; HTML, CSS, Javascript and even PHP. 
+		In fact, it can be either a complete web page or a page fragment containing unique
+		or relevant information for each page. A view is always <a href="#render">rendered</a> to the browser by a <a href="controllers.html" target="_blank">controller</a>.
+		<br /><br />
+		
+		Views are stored in <strong>content/views</strong> folder (or sub-folders).
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">View As Complete Web Page</div>
+		<div class="spacer">.</div>
+
+		EZPHP allows  you to either apply a <a href="templates.html" target="_blank">template</a>
+		to all your views or create complete views for all your pages. If you are not using
+		a template, you will have to create complete views for each of your pages.
+
+		<br /><br />&rarr; <strong>Example</strong><br />
+		This page is suppossed to show some products for your site:
+
+		<textarea name="code" class="xml">
+<html>
+<head>
+<title>Sample Page</title>
+</head>
+<body>
+
+<!-- header -->
+
+<!-- main content -->
+<table cellpadding="0" cellspacing="0">
+	<caption align="center">Our Products</caption>
+	
+	<tr>
+		<td align="left">Product Name</td>
+		<td align="left">Price</td>
+		<td align="left">Stock</td>
+		<td align="left">Active</td>
+	</tr>
+
+	<tr>
+		<td align="left">Chai</td>
+		<td align="left">18</td>
+		<td align="left">39</td>
+		<td align="left">Yes</td>
+	</tr>
+	
+	<tr>
+		<td align="left">Chang</td>
+		<td align="left">19</td>
+		<td align="left">17</td>
+		<td align="left">Yes</td>
+	</tr>
+
+</table>
+
+<!-- footer -->
+
+</body>
+</html>
+		</textarea>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox" id="fragment">View As Page Fragment</div>
+		<div class="spacer">.</div>
+		
+		If, however, you are using a template for your views, then you won't have to create
+		complete views for your pages. Instead, each of your view will be a part of the 
+		template file in which it will be echoed. For a template, you create a template
+		file <strong>template.php</strong> which includes/imports all your header, footer,
+		sidebars, etc. Therefore, the view in this case is simply that part of the template
+		which is unique per page or something coming from the database. For example, consider
+		two pages of your site, <strong>home page</strong> and <strong>about us page</strong>;
+		both of these pages have common header, footer, sidebars included by the template file,
+		the only thing different is the main or middle content of these pages eg on <em>home page</em>,
+		you put information about your site, product or whatever and on <em>about us page</em>,
+		you put information about yourself or your company. This unique information is the <strong>view</strong>
+		for these pages. Please read <a href="templates.html" target="_blank">templates</a> for more information.
+
+		<br /><br />&rarr; <strong>Example</strong><br />
+		This page is suppossed to show some products for your site:
+
+		<textarea name="code" class="xml">
+<!-- main content only; rest of the things will be loaded by our template -->
+<table cellpadding="0" cellspacing="0">
+	<caption align="center">Our Products</caption>
+	
+	<tr>
+		<td align="left">Product Name</td>
+		<td align="left">Price</td>
+		<td align="left">Stock</td>
+		<td align="left">Active</td>
+	</tr>
+
+	<tr>
+		<td align="left">Chai</td>
+		<td align="left">18</td>
+		<td align="left">39</td>
+		<td align="left">Yes</td>
+	</tr>
+	
+	<tr>
+		<td align="left">Chang</td>
+		<td align="left">19</td>
+		<td align="left">17</td>
+		<td align="left">Yes</td>
+	</tr>
+
+</table>
+		</textarea>
+
+		
+		<div class="note">
+		<strong>Note:</strong> If you don't want to use a template for your site, you should specify this in 
+		<strong>config/config.php</strong> file by setting the option <strong>use_template</strong>
+		to <strong>0</strong> (a zero) under the <strong>template</strong> section.
+		</div>
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Sending Data To Views</div>
+		<div class="spacer">.</div>
+
+		Data is sent to the views from the controllers. Here is the prototype:
+
+		<textarea name="code" class="php">
+		$this->view->var_name = var_value;
+		</textarea>
+
+		You can send just about any data to the views; scalar variables, arrays, objects. Here are 
+		some examples:
+
+		<br /><br />
+		<strong>&rarr; Scalar Variables</strong>
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				$this->view->first_var = 'This is some text !';
+				$this->view->another_var = 'This is some text too!';
+			}
+		}	
+		</textarea>
+
+		<strong>&rarr; Objects</strong>
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				$class = new myclass();
+				$this->view->class_instance = $class;
+			}
+		}	
+		</textarea>
+
+		<strong>&rarr; Arrays</strong>
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				$arr = array('fruit' => 'apple', 'veggie' => 'carrot');
+				$this->view->fruits = $arr;
+			}
+		}	
+		</textarea>
+
+		<strong id="dbs">&rarr; Records from Database</strong>
+		<br />
+		To fetch data from database, we use <a href="models.html" target="_blank">models</a> of course:
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				// load the model
+				$this->load->model('latest_posts');
+				// request latest posts from model
+				$posts_array = $this->latest_posts->getPosts();
+			
+				// store the posts_array for the view file
+				$this->view->posts = $posts_array;
+			}
+		}	
+		</textarea>
+		
+
+		<div class="bigspacer">.</div>
+		<div class="subbox" id="render">Rendering Views</div>
+		<div class="spacer">.</div>
+
+		Redering a view is sending it to the browser. All views are rendered from within the controllers.
+		<br />
+		A view is rendered using <strong>render()</strong> method. Here is an example:
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				// some code
+				// ........
+				// ........
+				// ........
+	
+				// finally we render the view
+				$this->view->render('view_name');
+			}
+		}	
+		</textarea>
+
+		In the code above, <strong>view_name</strong> is the name of the view file present under the
+		<strong>content/views</strong> folder. When rendering views, you should not specify the
+		extension of the view files as shown in above code.
+		<br /><br />
+		
+		If you plan to put views in sub-folders, you should provide relative path to the 
+		<strong>content/views</strong> folder. Let's say you have view present at 
+		<strong>content/views/catalog/products.php</strong>, this is how you should render it:
+
+		<textarea name="code" class="php">
+		$this->view->render('catalog/products');
+		</textarea>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Rendering Multiple Views</div>
+		<div class="spacer">.</div>
+
+		If you want, you can render multiple views too. You just call the <strong>render</strong>
+		method for each view you want to render:
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				$this->view->no_template();
+	
+				$this->view->content = 'Some Content For the Main View!!';
+				
+				$this->view->render('header');
+				$this->view->render('sidebar');
+				$this->view->render('main');
+				$this->view->render('footer');
+			}
+		}
+		</textarea>
+		Notice on line 05 the use of <strong>no_template()</strong> method. It is used when you don't
+		want to use a template for your <em>current</em> controller which is <strong>some_controller</strong>
+		on line 01. Because we are rendering a view for each of the header, sidebar, main and footer, we
+		don't need a template and this is why we have used the <strong>no_template()</strong> method. Thus,
+		if you are using a template for your site, you don't need to render multiple views unless
+		you really need it for a certain page.
+		
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Using Sent Data In Views</div>
+		<div class="spacer">.</div>
+	
+		Above you learned  how to send data to the views and render it from controllers. 
+		Here we learn how to utilize that data on the views themselves. Let's suppose we send
+		<strong>myvar</strong> variable to the view <strong>test.php</strong> present in 
+		<strong>content/views</strong> folder:
+
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				$this->view->myvar = 'Some content for this variable !';
+				
+				// Render the view
+				$this->view->render('test');
+			}
+		}	
+		</textarea>
+		
+		Now there are two ways you can use the <strong>myvar</strong> variable on your view:
+		
+		<textarea name="code" class="php">
+		// file: content/views/test.php
+		
+		// direct way
+		echo $myvar;
+		
+		// by the way of view object
+		echo $this->view->myvar;
+		</textarea>
+
+		The later way is only good in situation when you suspect any clash between names of the <em>local</em>
+		variables of view and the ones sent by the controller.
+		
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Looping Through Sent Data</div>
+		<div class="spacer">.</div>
+
+		If you are sending arrays or some data from the database as shown <a href="#dbs">above</a>
+		then this is how you can loop through that in the view:
+
+		<textarea name="code" class="php">
+		foreach ($posts as $post)
+		{
+			echo $post['id'] . '<br />';
+			echo $post['title'] . '<br />';
+			echo $post['body'] . '<br />';
+			echo $post['tags'] . '<br />';
+		}
+		</textarea>
+		Of course you could use the <strong>for loop</strong> there too.
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Loading Different Templates</div>
+		<div class="spacer">.</div>
+	
+		If you are using <a href="#fragment">template</a>, you many want to use 
+		a different template for some of the your controllers/pages. An example that fits this scenario
+		is that you may use a different template for admin/backend side for your site. To load a
+		different (other than the one you have specified in <strong>config</strong> file) template,
+		you can use the <strong>load_template()</strong> method.
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				// some code
+				// ........
+				// ........
+				// ........
+	
+				// choose a different template for this particular controller/page
+				$this->view->load_template('admin');
+				
+				// Render the view now
+				$this->view->render('view_name');
+			}
+		}	
+		</textarea>
+		
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">The <strong>no_template()</strong> Method</div>
+		<div class="spacer">.</div>
+		If you are using a <a href="#fragment">template</a> for your site then
+		all your views will be applied specified template. If you wish, you could use the
+		<strong>no_template()</strong> method for any controller so that no template is applied
+		to that controller.
+
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				// some code
+				// ........
+				// ........
+				// ........
+	
+				// we don't need a template for this particular controller/page
+				$this->view->no_template();
+				
+				// Render the view now
+				$this->view->render('view_name');
+			}
+		}	
+		</textarea>
+		
+	  <!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./models.html">Models</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./templates.html">Templates</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../js/shBrushXml.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</html>

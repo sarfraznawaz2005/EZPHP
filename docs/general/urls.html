@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Anatomy of EZPHP URLs</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Anatomy of EZPHP URLs</div>
+		<div class="spacer">.</div>
+		
+		Before you start developing an application using EZPHP, you need to understand how the EZPHP
+		URLs are constructed. EZPHP employs segment-based approach to URLs which is search-engine 
+		as well as human friendly. Basically there can be be three segments in each EZPHP URL.
+		<br /><br />
+		
+		<ul>
+			<li>Controller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    (1st segment - The controller name)</li>
+			<li>Function&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      (2nd segment - The function of the controller to be run)</li>
+			<li>Parameter(s)&nbsp;    (3rd segment and beyod - Parameters to  be passed to the function)</li>
+		</ul>
+		<br />
+		Here is the structure of a typical EZPHP URL:
+	
+		<div class="border">
+		http://yoursite.com/index.php?route=controller/function/parameters
+		</div>
+	
+		<div align="center">
+			<img src="./../images/urls.gif" border="0" alt="EZPHP URL Structure" align="middle" />
+		</div>
+	
+		<br />
+	
+		In the above scorpion picture, <strong>catalog</strong> is <a href="./controllers.html" target="_blank">controller</a>, <strong>products</strong> is the function
+		name to be called present in the <strong>catalog</strong> controller and <strong>shirts</strong>, <strong>latest</strong>
+		and <strong>10</strong> are parameters passed to the <strong>products</strong> function.
+		<br />
+		<br />
+		For the homepage, you can construct a URL like this:
+	
+		<div class="border">
+		http://yoursite.com/index.php?route=home
+		</div>
+		
+		Or simply
+	
+		<div class="border">
+		http://yoursite.com/index.php
+		</div>
+		
+		<div class="note">
+			If you don't specify a controller name in the URL, the default controller which is set from <strong>config/config.php</strong>
+			file, will be used. Similarly, if you don't specify the second URL segment (ie function), the default function <strong>index()</strong>
+			will be used. Finally, if you don't specify the third (or more) URL segment (ie parameters), no parameters will be passed to the function.
+		</div>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Search Engine Friendly URLs</div>
+		<div class="spacer">.</div>
+
+		For every file to be viewed, the EZPHP uses a single point of entry file <strong>index.php</strong> present in the root folder.
+		This is where all access to the application is controlled from. To maintain this single point of entry, <strong>htaccess</strong>
+		can be put to use and make sure no other file can be accessed and hide the index.php file from the url. Doing this will create
+		search engine and user friendly URLs. 
+		<br /><br />
+		
+		The <strong>htaccess</strong> file should contain the following:
+	
+	<div class="code">
+	<pre>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]</pre>
+	</div>
+
+		Once the search engine friendly URLs are enabled, this is how you can access them:
+		<br /><br />
+	
+		<table border="0" cellpadding="3" cellspacing="3" align="left" width="100%" style="font-size:12px; margin:auto;">
+			<tr>
+				<td style="color:#015a9e;"><strong>Normal URL</strong></td>
+				<td style="color:#015a9e;"><strong>Search Engine Friendly URL</strong></td>
+			</tr>
+			<tr>
+				<td>www.yoursite.com/index.php?route=contact_us</td>
+				<td>www.yoursite.com/contact_us</td>
+			</tr>
+			<tr>
+				<td>www.yoursite.com/index.php?route=contact_us/submit_form</td>
+				<td>www.yoursite.com/contact_us/submit_form</td>
+			</tr>
+			<tr>
+				<td>www.yoursite.com/index.php?route=catalog/products/shirts/latest</td>
+				<td>www.yoursite.com/catalog/products/shirts/latest</td>
+			</tr>
+		</table>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">URL Suffix</div>
+		<div class="spacer">.</div>
+		
+		EZPHP allows you to add a suffix to your URLs. This can be done from the 
+		<strong>config/config.php</strong> file below the <strong>url</strong> section. Doing this
+		will make your pages appear of specified type. Let's say you have specified a suffix of
+		<strong>.html</strong> then URLs can be served like this too:
+
+		<div class="border">
+		http://yoursite.com/index.php?route=catalog/product.html<br />
+		http://yoursite.com/index.php?route=contact_us.html
+		</div>
+		
+		Please note that page type won't be changed, it would simply add the suffix. Also note that
+		when you add a suffix, it is good idea that you hide the <strong>index.php</strong> part
+		from your URLs so that pages look only of specified type and consistent. You can hide the
+		<strong>index.php</strong> part from URLs using <strong>.htaccess</strong> with some simple
+		rules like this:
+		
+	<div class="code">
+	<pre>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]</pre>
+	</div>
+
+		<div class="note">
+		Because <strong>index.php</strong> is main entry point to entire framework, you can not add 
+		a URL suffix to it; for example, following URL won't work:
+		</div>
+
+		<div class="border">
+		http://yoursite.com/index.html
+		</div>
+
+		<div class="note">
+		If you are using suffix-based URLs, the <strong>hyperlink</strong> function of 
+		<a href="./../core/uri.html" target="_blank">URI core class</a> will automatically add suffix to
+		your URLs.
+		</div>
+
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Query Strings</div>
+		<div class="spacer">.</div>
+		You can specify query strings as you normally do by adding <strong>&var=value</strong> to the URLs.
+		Here are some examples:
+
+		<div class="border">
+		http://www.yoursite.com/index.php?var=somevalue&route=catalog/products/<br />
+		http://www.yoursite.com/index.php?var=somevalue&var2=somevalue2&route=catalog/products/<br />
+		http://www.yoursite.com/index.php?route=catalog/products&var=somevalue<br />
+		</div>
+
+		<div class="note">
+			<strong>Note: </strong>If you are using query strings in URLs, make sure that you always
+			specify the <strong>route</strong> variable in your URLs to reflect the segmental approach
+			(controller/function/parameters) of EZPHP URLs.
+		</div>
+		
+		&rarr; For added convenience, EZPHP provides <a href="./../core/uri.html" target="_blank">URI core class</a> which helps working
+		with URIs easier.
+
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./folder_structure.html">Folder Structure</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./routing.html">URI Routing</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+
+		
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</html>

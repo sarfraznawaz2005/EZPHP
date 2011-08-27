@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>EZPHP Introduction</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">EZPHP Introduction</div>
+		<div class="spacer">.</div>
+		
+			EZPHP is an easy-to-use <span class="hint" title="Model View Controller">MVC-based</span> framework allowing you to develop applications much faster than doing it
+			from scratch by providing you with ready-made libraries and utility classes. It comes with a
+			mechanism to easily develop your applications in <span class="hint" title="Object Oriented Programming">OOP</span> way even if you are
+			not much familiar with it. EZPHP aims to be light-weight, fast and easy to use thereby
+			targeted to those who want to get the framework complexities out of the their way and start
+			writing the application fast from day one.
+			<br /><br />
+			If you are looking to quickly develop a website, EZPHP provides you with easier <span class="hint" title="Model View Controller">MVC</span> and <span class="hint" title="Object Oriented Programming">OOP</span>
+			approach with handy library and helper classes to get the job done fast. Or if you don't want
+			to learn or use some hard to use/learn frameworks available, EZPHP then most probably becomes
+			your definite choice.
+		
+		<div class="bigspacer">.</div>
+		<div class="headingbox">EZPHP Features</div>
+		<div class="spacer">.</div>
+
+		<ul id="features">
+			<li>Easy to Use</li>
+			<li>Fast</li>
+			<li>Light Weight</li>
+			<li>Object Oriented Programming </li>
+			<li>Model View Controller (MVC) Design Pattern</li>
+			<li>Security And XSS Filtering</li>
+			<li>Easily Extendible</li>
+			<li>Very Short Learning Curve</li>
+			<li>URI Routing</li>
+			<li>Built-In MySQL Wrapper</li>
+			<li>Data Validation</li>
+			<li>Multiple Template System</li>
+			<li>Emailer Class</li>
+			<li>Image Manipulation</li>
+			<li>Captcha Creation</li>
+			<li>File Upload Class</li>
+			<li>Paging Class</li>
+			<li>Caching</li>
+			<li>Search Engine Friendly URLs</li>
+			<li>Timing Scripts</li>
+			<li>RSS Generation</li>
+			<li>Browser Detection</li>
+			<li>And More Utility Classes...</li>
+		</ul>
+
+		<div class="bigspacer">.</div>
+		<div class="headingbox">EZPHP Goals</div>
+		<div class="spacer">.</div>
+		
+		The EZPHP has been designed with the following goals:
+		<br /><br />
+		<ul id="features">
+			<li>Light Weight</li>
+			<li>Fast</li>
+			<li>Easy To Use</li>
+		</ul>
+
+		<div class="bigspacer">.</div>
+		<div class="headingbox">EZPHP Uses MVC</div>
+		<div class="spacer">.</div>
+	
+		MVC is a design pattern. A design pattern is a code structure that allows for common coding frameworks to be
+		replicated quickly. You might think of a design pattern as a skeleton or framework on which your application
+		will be built. The most obvious benefit of a MVC framework is that it helps you separate the business logic
+		(database) and the presentation logic (design). This simply means that a developer and a designer can work
+		independently on a site developed using MVC pattern; there work won't clash because a developer will be
+		working on controller and model part while a designer will be working on view part. MVC frameworks let
+		programmers organize their code into three distinct functional areas:
+
+		<br />
+		<br />
+		<div align="center">
+			<img align="absmiddle" src="./../images/mvc.png" />
+		</div>
+		<br /><br />
+
+		<ol>
+			<li>
+				<strong>Models</strong> contain any and all code that relates to your database and other
+				data structures. If you had a table called pages, you'd have a model for it
+				and functions within that for selecting, creating, updating, and deleting
+				records from that table, among other things.
+			</li>
+			<br />
+			<li>
+				<strong>Views</strong> contain all your display and UI elements, your JavaScript code,
+				Cascading Style Sheets (CSS), HTML, and even PHP.
+			</li>
+			<br />
+			<li>
+				<strong>Controllers</strong> hold it all together. Each function in a controller represents a
+				destination or route. If you had a destination called /about, your controller
+				would have a function called about(). Basically, a controller decides which model
+				and which view to run. It is a contract between views and models.
+			</li>
+		  </ol>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Why Use MVC?</div>
+		<div class="spacer">.</div>
+
+		If you haven't worked with an MVC framework before, above three bullet points offer
+		hardly any clue as to the power behind this organizational scheme. Once you start
+		thinking in terms of MVC, your perspective about and attitude toward PHP
+		development changes radically.	
+		<br />
+		<br />
+		For example, instead of tucking database query code in every available nook and
+		cranny of your project, you organize all of it into models. And to select a page from
+		your database table, you use a function from the pages model.	
+		<br /><br />
+		Similarly, if you need to update the look and feel of a certain page, you work with the
+		views. You don't mess around with the controller. Likewise, the controller is where
+		you add destinations and other controlling code for your application; you don't put
+		any of that stuff in your model.
+		<br /><br />
+		Within a day or so of working with any MVC framework, you'll realize that you have a
+		system that is easy to remember and scale up as needed. If the customer needs a
+		change next week, no problem, you can handle it. The same goes if the request
+		comes in next year.
+		
+		<br /><br />
+		In a nutshell, here are the <em>most obvious</em> advantages of this system:
+		<br /><br />
+		
+		<ul>
+			<li>Objects-Oriented-Programming (OOP) which is always ideal with a host of its advantages.</li>
+			<li>Separation of business logic and presentation logic; both developer and designer can work safely/independently, no coding clash.</li>
+			<li>A project developed with this system is easy to remember and extend even after a year. No problem even for new/coming developers.</li>
+		</ul>
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./../index.html">Main</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./getting_started.html">Getting Started</a>&nbsp;&rarr;</span>
+			</div>						
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</html>

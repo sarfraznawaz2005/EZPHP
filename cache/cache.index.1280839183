@@ -1,0 +1,61 @@
+s:1784:"<table align="center" width="97%" cellpadding="5" cellspacing="0" bgcolor="#f6f6f6" style="border:1px solid #cccccc;">
+	<caption align="center" style="font-weight:bold; font-size:18px; color:#006600;">Our Products</caption>
+	
+	<tr>
+		<td style="font-weight:bold; color:#0066FF;">Product Name</td>
+		<td style="font-weight:bold; color:#0066FF;">Price</td>
+		<td style="font-weight:bold; color:#0066FF;">Stock</td>
+		<td style="font-weight:bold; color:#0066FF;">Active</td>
+	</tr>
+
+		<tr>
+		<td bgcolor="#cccccc">Chai</td>
+		<td bgcolor="#cccccc">18</td>
+		<td bgcolor="#cccccc">39</td>
+		<td bgcolor="#cccccc">Yes</td>
+	</tr>
+		<tr>
+		<td bgcolor="#f6f6f6">Chang</td>
+		<td bgcolor="#f6f6f6">19</td>
+		<td bgcolor="#f6f6f6">17</td>
+		<td bgcolor="#f6f6f6">Yes</td>
+	</tr>
+		<tr>
+		<td bgcolor="#cccccc">Aniseed Syrup</td>
+		<td bgcolor="#cccccc">10</td>
+		<td bgcolor="#cccccc">13</td>
+		<td bgcolor="#cccccc">Yes</td>
+	</tr>
+		
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="4">
+			<div style="float:left;">
+				
+Showing results <strong>1</strong> to <strong class = 'site_message'>3</strong> of <strong class = 'site_message'>9</strong>
+			</div>
+			<div style="float:right;">
+				&laquo; Prev 1 <a href="/EZPHP_SVN/index.php?page=1&&" class = 'site_message'>2</a>  <a href="/EZPHP_SVN/index.php?page=2&&" class = 'site_message'>3</a>  <a href="/EZPHP_SVN/index.php?page=1&&" class = 'site_message'> Next &raquo;</a> 			</div>
+		</td>
+	</tr>
+
+<!--
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+						
+			<div align="center">
+				<img src="./template/default/images/girl_100x100.jpg" />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+-->
+</table>";

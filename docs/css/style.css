@@ -1,0 +1,344 @@
+/* reset css start */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	padding-left:15px;
+	font-size: 13px;
+	color:#414243;
+	font-family:verdana;	
+}
+blockquote, q {
+	quotes: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* reset css end */
+
+
+/* EZPHP Documentation CSS File*/
+
+body
+{
+	margin:0px;
+	padding:0px;
+	font-family: verdana, tahoma, arial;
+	font-size: 13px;
+	font-weight: normal;
+	line-height:20px;
+	color:#414243;	
+}
+
+#container
+{
+	margin:0px auto;
+	width:100%;
+}
+
+#header
+{
+	margin:0px auto;
+	background:#f6f6f6;
+	width:100%;
+	height:70px;
+}
+
+#logo
+{
+	background:#f6f6f6 url(../images/ezphp_logo.png) no-repeat;
+	width:234px;
+	height:66px;
+	float:left;
+}
+
+h1
+{
+	font-size:22px;
+}
+
+#header a
+{
+	cursor:hand;
+	cursor:pointer;
+	outline:none;
+}
+
+div#heading h1
+{
+	margin:0px auto;
+	color:#f26522;
+	font-weight:bold;
+	font-size:22px;
+	text-align:center;
+	width:40%;
+	margin-left:32%;
+	padding-top:20px;
+	text-transform:uppercase;
+	text-shadow:1px 1px #CCCCCC;
+}
+
+div#logo h1
+{
+	position:absolute;
+	text-indent:-5000px;
+}
+
+#menu
+{
+	background:#7DB2DC;
+	width:100%;
+	height:39px;
+}
+
+#menu ul
+{
+	float:left;
+	padding:10px 10px 0px 10px;
+	list-style:none;
+}
+
+#menu ul li
+{
+	color:#FFFFFF;
+	float:left;
+	list-style:none;
+	margin-right:20px;
+}
+
+#menu ul li a.main
+{
+	font-weight:bold;
+	color:#FFFFFF;
+	text-decoration:none;
+	font-size:12px;
+	padding:6px 10px 7px 10px;
+}
+
+#menu ul li a.main:hover
+{
+	background:#0076a3;
+	padding:6px 10px 7px 10px;
+}
+
+ul
+{
+	list-style-image:url(../images/bullet_add_2.png);
+}
+
+#content
+{
+	clear:both;
+	width:100%;
+	color:#414243;
+	font-family:verdana;
+	width:96%;
+	margin:auto;
+	float:left;
+	padding:10px;
+	text-align:justify;
+}
+
+#content li, #content ol
+{
+	margin-left:10px;
+}
+
+#content a
+{
+	color:#f26522;
+	text-decoration:none;
+}
+
+#content a:hover
+{
+	color:#015a9e;
+	border-bottom:2px solid #f26522;
+	padding-bottom:1px;
+}
+
+.headingbox
+{
+	clear:both;
+	background:#ffdaaa;
+	color:#666666;
+	font-weight:bold;
+	font-size:18px;
+	border-bottom:1px solid #cccccc;
+	border-left:3px solid #f8af50;
+	width:100%;
+	padding:5px 0px 5px 10px;
+	margin:auto;
+	text-shadow: 0px 1px 0px #e5e5ee;
+}
+
+.subbox
+{
+	clear:both;
+	background:#f6f6f6;
+	color:#015a9e;
+	font-weight:bold;
+	font-size:14px;
+	border-bottom:1px solid #cccccc;
+	border-left:3px solid #CCCCCC;
+	width:100%;
+	padding:3px 0px 3px 10px;
+	margin:auto;
+	text-shadow:1px 1px #CCCCCC;
+}
+
+.clear
+{
+	clear:both;
+	height:1px; 
+	line-height: 1px;
+}
+
+.spacer
+{
+	visibility:hidden;
+	line-height: 10px;
+}
+
+.bigspacer
+{
+	visibility:hidden;
+	line-height: 20px;
+}
+
+#bottom_nav
+{
+	padding:5px 10px 5px 10px;
+	border-top:1px dashed #cccccc;
+	border-bottom:1px dashed #cccccc;
+	float:left;
+	width:100%;
+	margin:0px auto;
+	color:#f26522;
+	background:#f6f6f6;
+}
+
+#bottom_nav div
+{
+	margin:auto;
+	text-align:center;
+}
+
+#bottom_nav div span
+{
+	margin-right:25px;
+	margin-left:25px;
+}
+
+#bottom_nav a
+{
+	color:#f26522;
+	text-decoration:none;
+	line-height:22px;
+	text-decoration:none;
+}
+
+#bottom_nav a:hover
+{
+	color:#015a9e;
+	border-bottom:2px solid #f26522;
+	padding-bottom:2px;
+}
+
+#copyright
+{
+	font-size:10px;
+	margin:0px auto;
+	width:100%;
+	float:left;
+	text-align:center;
+}
+
+.hint
+{
+	cursor:help;
+	border-bottom:1px dotted #cccccc;
+}
+
+.note
+{
+	background: #FFFFEA url(../images/info.gif) no-repeat 1% 50%;
+	padding:15px 19px 15px 60px;
+	margin:20px 10px 20px 10px;
+	border:1px solid #D7D700;
+	border-left:3px solid #D7D700;
+	font-size:12px;
+	text-align:justify;
+	line-height:19px;
+	height:100%;
+}
+
+.step
+{
+	color:#FF6600;
+	font-weight:bold;
+	line-height:25px;
+}
+
+.code
+{
+	font-family:"Courier New", Courier, monospace;
+	margin:20px 10px 20px 10px;
+	border:1px dashed #f26522;
+	padding:5px;
+	color:#015a9e;
+}
+
+.key
+{
+	background:#F2FFE1;
+	color:#333333;
+	font-weight:bold;
+	font-family:"Courier New", Courier, monospace;
+	padding:2px 2px 2px 5px;
+	border-top:1px solid #83D13D;
+	border-bottom:1px solid #83D13D;
+}
+
+.border
+{
+	margin:20px 10px 20px 10px;
+	padding:3px 3px 3px 10px;
+	background:#f0f8ff;
+	color:#333333;
+	border-top:1px double #0080C0;
+	border-bottom:1px double #0080C0;	
+}

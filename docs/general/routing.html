@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./../css/SyntaxHighlighter.css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>URI Routing</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">URI Routing</div>
+		<div class="spacer">.</div>
+		
+		As depicted in <a href="./urls.html" target="_blank">Anatomy of EZPHP URLs</a> section, EZPHP URLs use
+		segment-based approach. For example:
+
+		<div class="border">
+		http://yoursite.com/index.php?route=controller/function/parameters
+		</div>
+
+		<div class="border">
+		http://yoursite.com/index.php?route=catalog/products/shirts/latest/10
+		</div>
+
+		In the above URL, <strong>catalog</strong> is <a href="./controllers.html" target="_blank">controller</a>, <strong>products</strong> is the function
+		name to be called present in the <strong>catalog</strong> controller and <strong>shirts</strong>, <strong>latest</strong>
+		and <strong>10</strong> are parameters passed to the <strong>products</strong> function.
+		<br /><br />
+		
+		In some cases, you may want to change this behaviour. For example, you may want to have a
+		URL like this:
+
+		<div class="border">
+		http://yoursite.com/index.php?route=product/99
+		</div>
+
+		As oppossd to normal behaviour, in the above URI, second segment (99) is not the method
+		of the controller but it is an argument with product ID.
+		<br /><br />
+		
+		The URI routing feature is an extremely useful weapon in your development arsenal that
+		allows you to change the behaviour of URIs in accordance with your requirements. You can
+		actually change how URIs are mapped to controllers and methods. 
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Specifying Routes</div>
+		<div class="spacer">.</div>
+		
+		Routes are set from <strong>config/routes.php</strong> file. The basic format of routes
+		is as follows:
+		
+		<div class="border">
+		$routes['route'] = 'controller/function';
+		</div>
+		
+		Above, <strong>route</strong> is the URI you want to route and <strong>controller/function</strong>
+		would replace it.<br />
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Examples</div>
+		<div class="spacer">.</div>
+
+		Here are some examples:
+
+		<div class="border">
+		$routes['blog'] = 'articles';
+		</div>
+		
+		A URL with word <strong>blog</strong> in the first segment will be re-mapped to
+		<strong>articles</strong> controller.
+		
+		<div class="border">
+		$routes['articles'] = 'blog/articles';
+		</div>
+		
+		A URL with word <strong>articles</strong> in the first segment will be re-mapped to
+		<strong>articles</strong> function of <strong>blog</strong> controller.
+
+		<div class="border">
+		$routes['product/show'] = 'product/get_product/99';
+		</div>
+		
+		A URL with word <strong>product</strong> in the first segment and <strong>show</strong>
+		in the second segment will be re-mapped to <strong>get_product</strong> function having ID
+		<strong>99</strong> of <strong>product</strong> controller.
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Using Wildcards</div>
+		<div class="spacer">.</div>
+		EZPHP provides you with four wildcards for routing URIs.
+		<br /><br />
+		
+		<ul>
+			<li><strong>:any</strong> will match a segment containing any character.</li>
+			<li><strong>:num</strong> will match a segment containing only numbers.</li>
+			<li><strong>:alpha</strong> will match a segment containing only alphabetic characters.</li>
+			<li><strong>:alphanum</strong> will match a segment containing only numbers and alphabetic characters.</li>
+		</ul>
+		<br />
+		
+		Here are some examples with wildcards:
+
+		<div class="border">
+		$routes['product/:any'] = 'catalog/get_product';
+		</div>
+		
+		A URL with word <strong>product</strong> in the first segment and <strong>anything</strong>
+		in the second segment will be re-mapped to <strong>get_product</strong> function of 
+		<strong>catalog</strong> controller.
+
+		<div class="border">
+		$routes['article/:num'] = 'blog/get_article';
+		</div>
+		
+		A URL with word <strong>article</strong> in the first segment and <strong>any number</strong>
+		in the second segment will be re-mapped to <strong>get_article</strong> function of 
+		<strong>blog</strong> controller.
+
+		<div class="border">
+		$routes['blog/article/:alpha'] = 'blog/get_article/10';
+		</div>
+		
+		A URL with word <strong>blog</strong> in the first segment and <strong>article</strong>
+		in the second segment and any <strong>alphabetic</strong> characters in the third segment
+		will be re-mapped to <strong>get_article</strong> function having ID <strong>10</strong>
+		of <strong>blog</strong> controller.
+
+		<div class="border">
+		$routes['article/:alphanum'] = 'blog/get_article';
+		</div>
+		
+		A URL with word <strong>article</strong> in the first segment and <strong>any number or
+		alphabetic characters</strong> in the second segment will be re-mapped to <strong>get_article</strong>
+		function of <strong>blog</strong> controller.
+
+		<div class="border">
+		$routes['product/(:num)'] = "catalog/get_product_by_id/$1";
+		</div>
+		
+		A URL with word <strong>product</strong> in the first segment and <strong>any number</strong>
+		in the second segment will be re-mapped to <strong>get_product_by_id</strong> function of 
+		<strong>catalog</strong> controller with matched ID as an argument to the 
+		<strong>get_product_by_id</strong> function.
+
+		<div class="note">
+		<strong>Note:</strong> Routes are run in the order they are placed. Higher routes will always run before the lower ones.
+		</div>
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Using Regular Expressions</div>
+		<div class="spacer">.</div>
+		If  you prefer, you can use regular expressions and back-references to route the URIs. As an example,
+		consider the following URL:
+
+		<div class="border">
+		$routes['product/([0-9]+)'] = 'catalog/get_product/$1';
+		</div>
+
+		A URL with word <strong>product</strong> in the first segment and <strong>any number</strong>
+		in the second segment will be re-mapped to <strong>get_product</strong> function of 
+		<strong>catalog</strong> controller with matched ID as an argument to the 
+		<strong>get_product</strong> function.
+		<br /><br />
+		
+		&rarr; For added convenience, EZPHP provides <a href="./../core/uri.html" target="_blank">URI core class</a> which helps working
+		with routed URIs easier.
+
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./urls.html">Anatomy of EZPHP URLs</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./controllers.html">Controllers</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</html>

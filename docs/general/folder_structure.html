@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Folder Structure of EZPHP</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Folder Structure of EZPHP</div>
+		<div class="spacer">.</div>
+		
+		When you open the EZPHP folder, you would see following folder structure:
+		<br /><br />
+		<div><img src="./../images/folder.jpg" border="0" /></div>
+		<br />
+	
+		<ul>
+			<li><strong>cache</strong> folder will contain the cached files if cache is turned on.</li>
+			<li><strong>classes</strong> folder contains the useful classes/libraries you may use in  your application.</li>
+			<li><strong>config</strong> folder contains the site configuration files.</li>
+			<li><strong>content</strong> folder will contain the model, view and controller files of your application.</li>
+			<li><strong>core</strong> folder contains the core EZPHP framework files. </li>
+			<li><strong>docs</strong> folder contains the EZPHP documentation files. </li>
+			<li><strong>error404</strong> folder contains the 404 error files. </li>
+			<li><strong>log</strong> folder will contain application log information. </li>
+			<li><strong>template</strong> folder contains the layout structure files of the site.</li>
+		</ul>
+
+		<br /><br />
+
+		In order to develop an application using EZPHP, we are <em>basically (or mostly)</em> interested in three obvious folders inside the <strong>content</strong> folder
+		and the <strong>template</strong> folder:
+		<br /><br />
+		<ol>
+			<li><strong>models &rarr; </strong>contains your model (data) files.</li>
+			<li><strong>views &rarr; </strong>contains your view files.</li>
+			<li><strong>controllers &rarr; </strong>contains your controller files.</li>
+			<li><strong>template &rarr; </strong>contains your template file, CSS, JS, Images, etc.</li>
+		</ol>
+		<br />
+		So if you want to create a new page, let us say <strong>Contact Us</strong>, you must create two files; one <a href="./views.html" target="_blank">view</a> (html/template) file going into 
+		<strong>views</strong> folder and other one <a href="./controllers.html" target="_blank">controller</a> (main logic) file going into <strong>controller</strong> folder. Optionally,
+		you could create third <a href="./models.html" target="_blank">model</a> file and place it in the <strong>models</strong> folder if you think your
+		<strong>Contact Us</strong> page will interact with the database.
+		
+		<div class="note">
+			For every new page, you must create at least two files; one <strong>controller</strong> file and other one <strong>view</strong> file.
+			You could also create third <strong><strong>optional</strong></strong> <strong>model</strong> file if you think the page you created will interact with the
+			database.
+		</div>	
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./../overview/credits.html">Credits</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./urls.html">Anatomy of EZPHP URLs</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</html>

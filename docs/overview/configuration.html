@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Configuration</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>
+
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Configuration</div>
+		<div class="spacer">.</div>
+		The configuration file is used to configure your installation of EZPHP. It can be found at
+		<strong>config/config.php</strong>. You can configure the settings for:
+		<br /><br />
+		
+		<ul>
+		 <li><strong>application</strong>
+			<ul>
+				<li>default_controller &rarr; used to specify the default controller when site is visited.</li>
+				<li>timezone &rarr; used to specify the time zone.</li>
+			</ul>
+		 </li>
+		 <li><strong>security</strong>
+			<ul>
+				<li>error_reporting &rarr; used to set error reporting level.</li>
+				<li>display_errors &rarr; whether or not errors should be displayed.</li>
+				<li>xss_filter &rarr; used to set on or off the XSS (Cross-site scripting) filtering.</li>
+			</ul>
+		 </li>
+		 <li><strong>database</strong>
+			<ul>
+				<li>use_db &rarr; used to specify whether or not the site will need a database.</li>
+				<li>db_class &rarr; The database/mysql wrapper class to be used present in classes folder.</li>
+				<li>and more settings related to database connection.</li>
+			</ul>
+		 </li>
+		 <li><strong>template</strong>
+			<ul>
+				<li>use_template &rarr; whether or not site will use a template.</li>
+				<li>template_dir &rarr; the name of the template folder present inside the template folder.</li>
+			</ul>
+		 </li>
+		 <li><strong>cache</strong>
+			<ul>
+				<li>enable_cache &rarr; whether cache should be on or off.</li>
+				<li>cache_lifetime &rarr; time a page will be cached for.</li>
+			</ul>
+		 </li>
+		 <li><strong>url</strong>
+			<ul>
+				<li>url_suffix &rarr; used to specify a suffix for the site urls.</li>
+			</ul>
+		 </li>
+		</ul>
+		
+		<br />
+		You should specify <strong>1</strong> for enabling a certain option and <strong>0</strong> for disabling it.
+		
+		
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./installation.html">Installation</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./credits.html">Credits</a>&nbsp;&rarr;</span>
+			</div>			
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</html>

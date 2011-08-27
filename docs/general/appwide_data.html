@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./../css/SyntaxHighlighter.css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Application-Wide Data</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Application-Wide Data</div>
+		<div class="spacer">.</div>
+		
+		There can be some data that you would like to be available throughout the application;
+		available to all controllers, models and views. This can be function(s), variable(s) or
+		constant(s). For example, it can be a generic function you would like to use anywhere
+		in the application or a variable/constant such as site title, copyright or site slogan
+		or probably some other piece of data.
+		<br /><br />
+		
+		EZPHP allows you to achieve this very easily. All you have to do is to put any functions,
+		variables or constants in the <strong>config/globals.php</strong> file. See below section
+		on how to specify your data in this file.
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Specifying Data</div>
+		<div class="spacer">.</div>
+
+		Any data you would like to be available throughout your application goes into 
+		<strong>config/globals.php</strong> file. Putting data in this file is no different
+		than how you normally do in your PHP files; you just create variables, functions in the
+		very same fashion. As for constants, you should prefix their names with an <strong>underscore
+		character (_)</strong>. That's all !
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox" id="example_data">Example Data</div>
+		<div class="spacer">.</div>
+
+		Here is an example of how data might look like in this file:
+		
+		<textarea name="code" class="php">
+		// file: config/globals.php
+		
+		//// variables ////
+		$title = 'Our Site!';
+		$copyright = 'Copyright &copy; 2010 - Our Company';
+		$slogan = 'Out site, the best site !!';
+		
+		//// arrays ////
+		$fruits = array('fruit' => 'apple', 'veggie' => 'carrot');
+		
+		//// constants ////
+		define ('_PHONE', 1234567);
+		define ('_COUNTRY', 'USA');
+		
+
+		//// functions ////
+		function add($val1, $val2)
+		{
+			return ($val1 + $val2);
+		}
+	
+		function subtract($val1, $val2)
+		{
+			return ($val1 - $val2);
+		}
+		</textarea>
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Using Specified Data</div>
+		<div class="spacer">.</div>
+		
+		You can use this data on any of your controllers, models and view files. To use variables/arrays,
+		you have to prefix them with <strong class="key">$this-></strong> keyword and stripping dollar ($) sign
+		from them. However, you can use functions and constants as they are with no need to prefix
+		them like variables/arrays. Here is an example of using above data.
+		
+		<textarea name="code" class="php">
+		echo $this->title;
+		echo $this->copyright;
+		echo $this->slogan;
+		
+		print_r($this->fruits);
+		
+		echo _PHONE;
+		echo _COUNTRY;
+		
+		echo add(5, 10);
+		echo subtract(10, 5);
+		</textarea>
+
+		<div class="note">
+		<strong>Note:</strong> In the view files, you can use variables/arrays with or without <strong class="key">$this-></strong>
+		keyword.
+		</div>
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">The Application Class</div>
+		<div class="spacer">.</div>
+		Another way to specify application-wide data (variabels, arrays, functions, constants)
+		is to use application class located at <strong>core/application.php</strong>. The 
+		application class extends all controller, model and view files. Thus, anything put
+		in this class will be available globally. We can specify the <a href="#example_data">
+		above</a> data in this class like this:
+		
+		<textarea name="code" class="php">
+		class application
+		{
+			function __construct()
+			{
+				//// variables ////
+				$this->title = 'Our Site!';
+				$this->copyright = 'Copyright &copy; 2010 - Our Company';
+				$this->slogan = 'Out site, the best site !!';
+				
+				//// arrays ////
+				$this->fruits = array('fruit' => 'apple', 'veggie' => 'carrot');
+				
+				//// constants ////
+				@define ('PHONE', 1234567);
+				@define ('COUNTRY', 'USA');
+			}
+		
+			//// functions ////
+			function add($val1, $val2)
+			{
+				return ($val1 + $val2);
+			}
+		
+			function subtract($val1, $val2)
+			{
+				return ($val1 - $val2);
+			}
+		}
+		</textarea>
+		This time we don't have any obligation to prefix constants with an underscore character.
+		Here OOP concepts apply. You should prefix all variables, arrays, functions with 
+		<strong class="key">$this-></strong> keyword when using them on controller, model and view files.
+		There is no need to prefix constants however.
+		
+		<div class="note">
+		<strong>Note:</strong> In the application class, we place any variables, arrays and
+		constants in its <strong>__construct</strong> method which is called by classes that
+		extend this class.
+		</div>
+		<br />
+		
+		The application class can turn out to be very useful because it extends the core model, view and
+		controller classes. You can use this class to specify your own rules and functions that
+		all model, view and controllers classes will inherit from. This is the easy way to extend the EZPHP
+		core system or framework.
+
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./templates.html">Templates</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./views.html">Views</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</html>

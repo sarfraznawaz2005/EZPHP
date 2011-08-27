@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./../css/SyntaxHighlighter.css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Templates</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Templates</div>
+		<div class="spacer">.</div>
+		
+		In EZPHP, a template is used to setup design structure of your site. It is actually a single
+		file named <strong>template.php</strong> which inludes/imports all the files common to your site such
+		as header, sidebar(s), footer, etc. It also imports any CSS, Javascript files you may need
+		throughout your site. The dynamic and unique content relevant to each page is echoed in this
+		file from the <a href="views.html" target="_blank">view files</a> however.
+		<br /><br />
+				
+		This template file is created under <strong>template/[your_template_folder]/template.php</strong>
+		where [your_template_folder] is the folder under which you will create this file, you can name
+		this folder anything you want. Once you create a template file, you will have to specify the name
+		of the template folder in the <strong>config/config.php</strong> by setting the option
+		<strong>template_dir</strong> under the <strong>template</strong> section. This way, all your view
+		files will be applied this template.
+		<br /><br />
+
+		You can create any number of templates for your site. For example, you may want to create a 
+		template for the front-end of your site as well as back-end of  your site. If your client asks
+		you to change the design of site, you may create another template for that thereby keeping
+		the old design intact.
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Creating Templates</div>
+		<div class="spacer">.</div>
+		
+		EZPHP puts you in full control about creating structure of your template files. There in no
+		hard and fast rule as to how you design your template structure. This could be best explained
+		with an example. Let's suppose we have to create a template for our site <strong>mysite</strong>
+		that has header, sidebar, footer and it also needs a javascript framework file such as jquery. Here is
+		how we might go on to creating the template for it:
+		
+		<br /><br />
+		<strong class="border">&rarr; Step 1</strong>
+		<br /><br />
+		
+		First of all, we create a folder named <strong>mysite</strong> under the <strong>template</strong>
+		folder.
+
+		<br /><br />
+		<strong class="border">&rarr; Step 2</strong>
+		<br /><br />
+		
+		We create a template file named <strong>template.php</strong> under the <strong>mysite</strong>
+		folder we created in step 1. We now assume that our template will need a stylesheet file, header, 
+		sidebar, footer files, images and javascript files, therefore, we create four folder that our
+		template file will include/import these files from:
+		<br /><br />
+		
+		<ul>
+			<li><strong>css</strong>: contains our stylesheet file.</li>
+			<li><strong>images</strong>: contains images of our site.</li>
+			<li><strong>includes</strong>: contains any included files such as header, sidebar, footer, etc.</li>
+			<li><strong>js</strong>: contains any javascript files needed by our site.</li>
+		</ul>
+		<br />
+		
+		Now, our folder structure looks like this under the <strong>template/mysite</strong> folder:
+		<br /><br />
+
+		<img src="./../images/template.jpg" />
+
+
+		<br /><br />
+		<strong class="border">&rarr; Step 3</strong>
+		<br /><br />
+		
+		We now edit the <strong>template.php</strong> file to come up with design structure of our site.
+		Here we assume that our site design is very rudimentary that simply needs header, sidebar, main content
+		and footer. This is how the structure of our template will look like:
+		<br /><br />
+
+		<img src="./../images/layout.jpg" />
+		
+		<br /><br />
+		In the above picture, the <strong>Content</strong> box will be populated by the 
+		<a href="views.html" target="_blank">view files</a> only. So in our template, we
+		consider only header, sidebar and footer.
+		<br /><br />
+		
+		We now put this code in our <strong>template.php</strong> file:
+		
+		<textarea name="code" class="xml">
+		<html>
+		<head>
+		<title>My Site</title>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		</head>
+		
+		<body>
+			<div id="wrapper">
+
+				<div id="header">
+				</div>
+				
+				<div id="content">
+				</div>
+
+				<div id="sidebar">
+				</div>
+
+				<div id="footer">
+				</div>
+				
+			</div>
+		</body> 
+		</html>
+		</textarea>
+		
+		<div class="note">
+		<strong>Note:</strong> Here we have created DIV-based layout for our template but if you want
+		you could create the TABLE-based layout too.
+		</div>
+		
+		We have only created the skeleton of our template, now we modify it to import our
+		CSS, Javascript, header, sidebar and footer files:
+
+		<textarea name="code" class="xml">
+		<html>
+		<head>
+		<title>My Site</title>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		<link rel="stylesheet" href="<?php echo $ez_template_path; ?>css/style.css" type="text/css" />
+		<script type="text/javascript" src="<?php echo $ez_template_path; ?>js/jquery.js"></script>
+		</head>
+		
+		<body>
+			<div id="wrapper">
+
+				<div id="header">
+					<?php include "includes/header.php";?>
+				</div>
+				
+				<div id="content">
+					<?php echo $ez_layout_content; ?>
+				</div>
+
+				<div id="sidebar">
+					<?php include "includes/sidebar.php";?>
+				</div>
+
+				<div id="footer">
+					<?php include "includes/footer.php";?>
+				</div>
+				
+			</div>
+		</body> 
+		</html>
+		</textarea>
+
+		Now there are quite few things to notice in the above template:
+		<br /><br />
+		
+		First of all, on lines 05 and 06, we have used the EZPHP's built-in variable 
+		<strong>$ez_template_path</strong>. It is path to your template folder including the
+		trailing slash eg in this example, it corresponds to <strong>./template/mysite/</strong>.
+		You need to use this variable to include any CSS, Javascript or images on your template
+		file.
+		<br /><br />
+		
+		For the header, sidebar and footer, we simply include those files in our template using
+		PHP's <strong>include</strong> construct. This includes files from <strong>includes</strong>
+		folder we created earlier.
+		<br /><br />
+		
+		Lastly, for the content which will come from <a href="views.html" target="_blank">view files</a>, we have used the EZPHP's built-in
+		variable <strong>$ez_layout_content</strong> on line 17. This way, view files are echoed in our template
+		using this variable.
+		
+		<br /><br />
+		<strong class="border">&rarr; Step 4</strong>
+		<br /><br />
+		Now that we have finished creating our template, we need to specify this in 
+		<strong>config/config.php</strong> file by setting the option
+		<strong>template_dir</strong> under the <strong>template</strong> section. We also
+		set <strong>use_template</strong> to 1 (one) because we are intending to use a template
+		for out site.
+
+		<textarea name="code" class="xml">
+		[template]
+		use_template = 1
+		template_dir = "mysite"
+		</textarea>
+
+		<br /><br />
+		<strong class="border">&rarr; Conclusion</strong>
+		<br /><br />
+		As we mentioned earlier, you can code your template files any way you want. There are only
+		two things you need to consider:
+		<br /><br />
+		
+		<ul>
+			<li>The usage of EZPHP's <strong>$ez_template_path</strong> variable as shown above.</li>
+			<li>The usage of EZPHP's <strong>$ez_layout_content</strong> variable as shown above.</li>
+		</ul>
+
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Built-In Variables</div>
+		<div class="spacer">.</div>
+
+		You have following built-in variables available to be used in your template or view files.
+		<br /><br />
+		
+		<ul style="line-height:30px;">
+			<li><strong>$ez_template_path</strong> : path to the template folder eg <strong class="border">./template/mysite/</strong></li>
+			<li><strong>$ez_full_path</strong> : full path to the template folder eg <strong class="border">C:/wamp/www/EZPHP/template/mysite/</strong></li>
+			<li><strong>$ez_content_path</strong> : path to the content folder eg <strong class="border">C:/wamp/www/EZPHP/content/</strong></li>
+			<li><strong>$ez_base_path</strong> : path to the base EZPHP folder eg <strong class="border">C:/wamp/www/EZPHP/</strong></li>
+			<li><strong>$ez_template_name</strong> : name of the template folder eg <strong class="border">mysite</strong></li>
+			<li><strong>$ez_view_path</strong> : path to the views folder eg <strong class="border">C:/wamp/www/EZPHP/contnt/views/</strong></li>
+		</ul>
+		<br />
+		As can be seen, all paths end with a trailing slash character. So you don't need to specify this trailing slash character
+		when using these variables.
+		
+		<div class="note">
+		<strong>Note:</strong> Paths may come out to be different for you depending on where you have installed the EZPHP.
+		</div>
+		
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Loading Different Templates</div>
+		<div class="spacer">.</div>
+	
+		In some cases, you many want to use a different template for some of the your controllers/pages.
+		An example that fits this scenario is that you may use a different template for admin/backend side for your
+		site. To load a different (other than the one you have specified in <strong>config</strong> file) template,
+		you can use the <strong>load_template()</strong> method from the controllers.
+		
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				// some code
+				// ........
+				// ........
+				// ........
+	
+				// choose a different template for this particular controller/page
+				$this->view->load_template('admin');
+				
+				// Render the view now
+				$this->view->render('view_name');
+			}
+		}	
+		</textarea>
+	
+		Above controller expects that you have already created a template for the admin
+		side, that is, <strong>template/admin/template.php</strong>. Note also that you use
+		the template <strong>folder name</strong>, not the <strong>template.php</strong> file with
+		the <strong>load_template</strong> method (see line 11 above).
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">The <strong>no_template()</strong> Method</div>
+		<div class="spacer">.</div>
+		If you don't want to apply a template to any page, you could use the <strong>no_template()</strong> method
+		so that no template is applied to that controller/page.
+
+		<textarea name="code" class="php">
+		class some_controller_controller extends controller
+		{
+			function index()
+			{
+				// some code
+				// ........
+				// ........
+				// ........
+	
+				// we don't need a template for this particular controller/page
+				$this->view->no_template();
+				
+				// Render the view now
+				$this->view->render('view_name');
+			}
+		}	
+		</textarea>
+		
+
+		
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./views.html">Views</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./appwide_data.html">Application-Wide Data</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../js/shBrushXml.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</html>

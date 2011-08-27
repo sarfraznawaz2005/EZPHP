@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./../css/SyntaxHighlighter.css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>URI Class</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">URI Class</div>
+		<div class="spacer">.</div>
+		
+		The URI core class provides functions that assist in getting information from URIs.
+		This class can be used to get information from re-routed URIs too if you are using
+		<a href="./../general/routing.html" target="_blank">URI Routing</a>. This retrieved information
+		could be a controller segment, method, function, function arguments, path to the controller,
+		path to the view file, etc.
+		<br /><br />
+		
+		Apart from that, this class can also be used to create links and popup windows, redirect to
+		other URLs, etc.
+		
+		<div class="note">
+		<strong>Note:</strong> All core classes are initialized automatically by the system so you
+		don't need to initialize this class (or any other core class).
+		</div>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->parts</div>
+		<div class="spacer">.</div>
+		
+		This is the simple array that contains the URI segments. Consider the following URL:
+		
+		<div class="border">
+			http://yoursite.com/index.php?route=catalog/product/shirts/latest/100
+		</div>
+
+		Now if you did:
+		<textarea name="code" class="PHP">
+		print_r($this->uri->parts)
+		</textarea>
+
+		This is what you will get:
+
+		<textarea name="code" class="PHP">
+		Array
+		(
+		   [0] => catalog
+		   [1] => product
+		   [2] => shirts
+		   [3] => latest
+		   [4] => 100
+		)
+		</textarea>
+
+		Similarly, to get an specific segment, you have to pass the corresponding index number in square brackets like so:
+
+		<textarea name="code" class="PHP">
+		echo $this->uri->parts[0];	// catalog
+		echo $this->uri->parts[1];	// product
+		echo $this->uri->parts[2];	// shirts
+		echo $this->uri->parts[3];	// latest
+		echo $this->uri->parts[4];	// 100
+		</textarea>
+		
+		Alternatively, you can get the URI segments using <span class="key">part(n)</span> method too:
+
+		<textarea name="code" class="PHP">
+		echo $this->uri->part(0);	// catalog
+		echo $this->uri->part(1);	// product
+		echo $this->uri->part(2);	// shirts
+		echo $this->uri->part(3);	// latest
+		echo $this->uri->part(4);	// 100
+		</textarea>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->last_part()</div>
+		<div class="spacer">.</div>
+		
+		This method returns the last part from the uri. For the following URL:
+
+		<div class="border">
+			http://yoursite.com/index.php?route=catalog/product/shirts/latest
+		</div>
+
+		It would return <span class="key">latest</span>.
+
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->total_parts()</div>
+		<div class="spacer">.</div>
+		
+		This method returns total number of parts. For the following URL:
+
+		<div class="border">
+			http://yoursite.com/index.php?route=catalog/product/shirts/latest/100
+		</div>
+        
+        It would return <span class="key">5</span>
+
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->current()</div>
+		<div class="spacer">.</div>
+
+		This method returns current route URI part. For the following URL:
+
+		<div class="border">
+			http://yoursite.com/index.php?route=catalog/product/shirts/
+		</div>
+		
+		It would return what is the value of <span class="key">route</span> query string variable
+		in the above URL so it would return:
+		
+		<div class="code">
+		catalog/product/shirts/
+		</div>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->query_string()</div>
+		<div class="spacer">.</div>
+
+		This method returns the query string part of the URL. For the following URL:
+
+		<div class="border">
+			http://yoursite.com/index.php?route=catalog/product/shirts/
+		</div>
+		
+		It would return:
+
+		<div class="code">
+		route=catalog/product/shirts/
+		</div>
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->complete_uri()</div>
+		<div class="spacer">.</div>
+		
+		This method returns the complete uri string excluding domain name. For the following URL:
+
+		<div class="border">
+			http://yoursite.com/index.php?route=catalog/product/shirts/
+		</div>
+		
+		It would return:
+
+		<div class="code">
+		index.php?route=catalog/product/shirts/
+		</div>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->ruri()</div>
+		<div class="spacer">.</div>
+		
+		This method returns the routed uri for the current page set from <strong>config/routes.php</strong> file.
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->rparts</div>
+		<div class="spacer">.</div>
+		
+		This array returns the routed uri part. Example usage:
+		
+		<textarea name="code" class="PHP">
+		echo $this->uri->rparts[0];
+		echo $this->uri->rparts[1];
+		echo $this->uri->rparts[2];
+		</textarea>
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->controller()</div>
+		<div class="spacer">.</div>
+		
+		This method returns the current page controller name.
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->controller_path()</div>
+		<div class="spacer">.</div>
+		
+		This method returns the current page controller path.
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->method()</div>
+		<div class="spacer">.</div>
+		
+		This method returns the controller's method name.
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->suffix()</div>
+		<div class="spacer">.</div>
+		
+		This method returns the suffix set in <strong>config.php</strong>. If suffix is set to 
+        <span class="key">.html</span>, it would return that.
+
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->build_uri($array)</div>
+		<div class="spacer">.</div>
+		
+		This method can be used to build uri parts by passing an array. Example:
+
+		<textarea name="code" class="PHP">
+        $array = range('a', 'f');
+        $parts = $this->uri->build_uri($array);
+        echo $parts
+		</textarea>
+
+		It would return <span class="key">a/b/c/d/e/f</span>
+
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->base($protocol = '')</div>
+		<div class="spacer">.</div>
+		
+		This method can be used to get base uri of the site. Example:
+
+		<textarea name="code" class="PHP">
+        echo $this->uri->base();
+		</textarea>
+
+		It would return <span class="key">http://yoursite.com/</span>. You can specify the
+        optional protocol eg for:
+
+		<textarea name="code" class="PHP">
+        echo $this->uri->base('https');
+		</textarea>
+        
+        It would return <span class="key">https://yoursite.com/</span>.
+		
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->site($uri = '', $protocol = '')</div>
+		<div class="spacer">.</div>
+		
+		This method can be used to return a uri based on the site url, index page, protocal and url
+        suffix defined in <strong>config.php</strong>. Example:
+        
+		<textarea name="code" class="PHP">
+        echo $this->uri->site();
+		</textarea>
+
+		It would return <span class="key">http://yoursite.com/index.php</span>.
+
+		<textarea name="code" class="PHP">
+        echo $this->uri->site('admin/index', 'https');
+		</textarea>
+        
+        It would return <span class="key">http://yoursite.com/admin/index.html</span>.
+        
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->file($filename, $uri = '')</div>
+		<div class="spacer">.</div>
+		
+		 This method returns the URL to a file. Example:
+
+		<textarea name="code" class="PHP">
+        echo $this->uri->file('download.zip');
+		</textarea>
+        
+        It would return <span class="key">http://yoursite.com/download.zip</span>.
+
+		<textarea name="code" class="PHP">
+        echo $this->uri->file('download.zip', 'products');
+		</textarea>
+        
+        It would return <span class="key">http://yoursite.com/products/download.zip</span>.
+
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">$this->uri->title($title, $separator = '-')</div>
+		<div class="spacer">.</div>
+		
+		 This method returns a properly formatted title for use in a uri. The first parameter, the title is 
+         mandatory. The optional second parameter is used to set the separator character. By default this is
+         a dash. You can only change this to an underscore.
+         
+		All non-alphanumeric characters, except for dashes or underscores (depending on the second parameter),
+        will be deleted. However, non-ascii characters will first be transliterated (for example: à becomes a)
+        in order to keep the URL title as readable as possible. Finally, the URL title is converted to lowercase.         
+
+		<textarea name="code" class="PHP">
+        $title = 'Sont-ils prêts ?';
+        echo $this->uri->title($title, '_');
+		</textarea>
+        
+        It would return <span class="key">sontils_prts</span>.
+
+		<textarea name="code" class="PHP">
+        echo $this->uri->file('download.zip', 'products');
+		</textarea>
+        
+        It would return <span class="key">http://yoursite.com/products/download.zip</span>.
+
+		
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./../general/views.html">Views</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./uri.html">URI</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+</html>

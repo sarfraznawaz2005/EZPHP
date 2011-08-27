@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./../css/SyntaxHighlighter.css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Models</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>	
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Models</div>
+		<div class="spacer">.</div>
+		
+		Models are classes used to interact with the database, they can be used to add,
+		get, update or delete data from the database. They are typically loaded by the
+		<a href="controllers.html" target="_blank">controllers</a>. Basically,  a controller
+		requests a model to perform some action on the database (add, get, update or delete data),
+		the model typically sends back some response to the controller and then the controller
+		usually sends the response sent by the model to the <a href="views.html" target="_blank">views</a>.
+		<br />
+		
+		<div class="note">
+		<strong>Note:</strong> Models are only required for those pages that need to interact with the database.
+		For static pages, there is no need to use models classes.
+		</div>
+
+		Models are stored in <strong>content/models</strong> folder (or sub-folders).
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Model Class Structure</div>
+		<div class="spacer">.</div>
+		Here is the structure of a typical model class:
+		
+		<textarea name="code" class="PHP">
+		class name_model extends model
+		{
+			function some_function()
+			{
+				// any code to interact with database
+			}
+		}
+		</textarea>
+		
+		<strong>_model</strong> suffix is added to the name of the models. You should replace the <strong>name</strong> prefix in the <strong>name</strong>_model above with the model file name without extention.
+		Let's say you have model file name <strong>models/home.php</strong> then you must create
+		a structure for it like this:
+	
+		<textarea name="code" class="php">
+		class home_model extends model
+		{
+			function some_function()
+			{
+				// any code to interact with database
+			}
+		}	
+		</textarea>
+		<strong>some_function</strong> above can be named anything and contains the code to 
+		interact with the database. A model can have any number of functions to interact with
+		the database, that is, for selecting, updating, adding and deleting data. Notice that each model
+		class <strong>extends</strong> its parent model class.
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Loading Models</div>
+		<div class="spacer">.</div>
+		The models are typically loaded and called from the controllers. Here is the prototype to
+		load a model:
+
+		<textarea name="code" class="php">
+		$this->load->model('model_name');
+		</textarea>
+
+		In the code above, <strong>model_name</strong> is the name of the model file present under
+		the <strong>content/models</strong> folder. When loading models, you should not specify the
+		extension of the model files as shown in above code.
+		<br /><br />
+		
+		If you plan to put models in sub-folders, you should provide relative path to the 
+		<strong>content/models</strong> folder. Let's say you have model present at 
+		<strong>content/models/catalog/products.php</strong>, this is how you should load it:
+
+		<textarea name="code" class="php">
+		$this->load->model('catalog/products');
+		</textarea>
+		Once a model has been loaded, you can access model functions using an object with the same name
+		as that of class:
+
+		<textarea name="code" class="php">
+		// load model
+		$this->load->model('model_name');
+		// now call model function
+		$this->model_name->some_function();
+		
+		// load another model
+		$this->load->model('catalog/products');
+		// now call model function
+		$this->catalog_products->some_function();
+		</textarea>
+		Notice that when loading models from sub-folders, the slash character / is 
+		changed with an underscore character <strong>_</strong> when calling some
+		function from the model, as in the above code, <strong>catalog/products</strong> (line 07) 
+		is changed into <strong>catalog_products</strong> (line 09). However, you can also specify
+		a different object name via second parameter of the model function. Here is an example:
+
+		<textarea name="code" class="php">
+		// load model
+		$this->load->model('catalog/products', 'my_model');
+		// now call model function
+		$this->my_model->some_function();
+		</textarea>
+		Notice on line 04 that rather than using <strong>catalog_products</strong>, we have used
+		<strong>my_model</strong> which we specified in the model function on line 02.
+
+		<div class="note">
+		<strong>Note:</strong> For the model classes to work, you should specify your database
+		settings in the <strong>config/config.php</strong> file under the <strong>[database]</strong>
+		section.
+		</div>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Example</div>
+		<div class="spacer">.</div>
+		Let's assume you want to create a page for your blog that shows latest posts.
+		The first step will be to make the controller, here is the simple controller
+		that will request a model for the latest posts information and send it to the
+		view.
+
+			
+		<textarea name="code" class="php">
+		// file: content/controllers/latest_posts.php
+		class latest_posts_controller extends controller
+		{
+			function index()
+			{
+				// load the model
+				$this->load->model('latest_posts');
+				// request latest posts from model
+				$posts_array = $this->latest_posts->getPosts();
+				// store the posts_array for the view file
+				$this->view->posts = $posts_array;
+	
+				// render the view now
+				$this->view->render('blog_posts');
+			}
+		}	
+		</textarea>
+		
+		Now you should create a model which actually fetches posts from the database.
+		
+		<textarea name="code" class="php">
+		// file: content/models/latest_posts.php
+		class latest_posts_model extends model
+		{
+			// this function is called by controller
+			function getPosts()
+			{
+				// execute the query
+				$this->db->execute("select * from posts order by id desc");
+
+				// do we have any records
+				if ($this->db->count_select() > 0)
+				{
+					// return the array of posts
+					return $this->db->load_array();
+				}
+			}
+		}	
+		</textarea>
+
+		<div class="note">
+		<strong>Note:</strong> In the above model, we have used the mysql class <strong>classes/db_mysql</strong>.
+		So the functions <strong>execute</strong>, <strong>count_select</strong> and 
+		<strong>load_array</strong> are coming from that mysql class.
+		</div>
+		
+		Now that we have created both controller and model, this is how you can show posts
+		on the view file.
+		
+		<textarea name="code" class="php">
+		// file: content/views/blog_posts.php
+		
+		// $posts variable coming from the controller
+		foreach($posts as $blog_post)
+		{
+			echo '<p>' . $blog_post['body'] . '</p>';
+		}
+		</textarea>
+		To view your blog posts, you should visit URL like this:
+
+		<div class="border">
+		http://yoursite.com/index.php?route=latest_posts
+		</div>
+		
+		This simple example not only showed how to use models but it also
+		tought you the way pages might be created using EZPHP and how the
+		M-V-C parts are constructed and put together.
+
+		<div class="note">
+		Note that in above example, we first created <strong>controller</strong> then 
+		<strong>model</strong> and finally <strong>view</strong>. However, there is no
+		hard and fast rule for that; you can go with any order.
+		</div>
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./controllers.html">Controllers</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./views.html">Views</a>&nbsp;&rarr;</span>
+			</div>
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</html>

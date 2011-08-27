@@ -1,0 +1,61 @@
+s:1906:"<table align="center" width="97%" cellpadding="5" cellspacing="0" bgcolor="#f6f6f6" style="border:1px solid #cccccc;">
+	<caption align="center" style="font-weight:bold; font-size:18px; color:#006600;">Our Products</caption>
+	
+	<tr>
+		<td style="font-weight:bold; color:#0066FF;">Product Name</td>
+		<td style="font-weight:bold; color:#0066FF;">Price</td>
+		<td style="font-weight:bold; color:#0066FF;">Stock</td>
+		<td style="font-weight:bold; color:#0066FF;">Active</td>
+	</tr>
+
+		<tr>
+		<td bgcolor="#cccccc">Chef Antons Cajun Seasoning</td>
+		<td bgcolor="#cccccc">22</td>
+		<td bgcolor="#cccccc">53</td>
+		<td bgcolor="#cccccc">Yes</td>
+	</tr>
+		<tr>
+		<td bgcolor="#f6f6f6">Chef Anton Gumbo Mix</td>
+		<td bgcolor="#f6f6f6">21.35</td>
+		<td bgcolor="#f6f6f6">0</td>
+		<td bgcolor="#f6f6f6">No</td>
+	</tr>
+		<tr>
+		<td bgcolor="#cccccc">Grandma Boysenberry Spread</td>
+		<td bgcolor="#cccccc">25</td>
+		<td bgcolor="#cccccc">120</td>
+		<td bgcolor="#cccccc">Yes</td>
+	</tr>
+		
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="4">
+			<div style="float:left;">
+				
+Showing results <strong>4</strong> to <strong class = 'site_message'>6</strong> of <strong class = 'site_message'>9</strong>
+			</div>
+			<div style="float:right;">
+				 <a href="/EZPHP_SVN/index.php?page=0&&" class = 'site_message'>&laquo; Prev </a>  <a href="/EZPHP_SVN/index.php?page=0&&" class = 'site_message'>1</a> 2 <a href="/EZPHP_SVN/index.php?page=2&&" class = 'site_message'>3</a>  <a href="/EZPHP_SVN/index.php?page=2&&" class = 'site_message'> Next &raquo;</a> 			</div>
+		</td>
+	</tr>
+
+<!--
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+						
+			<div align="center">
+				<img src="./template/default/images/girl_100x100.jpg" />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+-->
+</table>";

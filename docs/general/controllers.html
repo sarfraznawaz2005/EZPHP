@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>EZPHP Framework Documentation</title>
+<link rel="stylesheet" href="./../css/style.css" type="text/css" />
+<link rel="stylesheet" href="./../css/css_menu.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./../css/SyntaxHighlighter.css" />
+<script type="text/javascript" src="./../js/css_menu_ie.js"></script>
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="./../js/pngfix/supersleight-min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a href="./../index.html"><div id="logo"><h1>EZPHP Documentation</h1></div></a>
+		<div id="heading">
+		  <h1>Controllers</h1>
+		</div>
+	</div>
+
+	<div id="menu">
+	</div>
+	
+	
+	</div>
+	
+	<div class="spacer">.</div>
+	
+	<div id="content">
+		<div class="headingbox">Controllers</div>
+		<div class="spacer">.</div>
+		
+		As the name suggests, a controller is a class file that controles it all. A controller decides which model and which
+		view to run. It is a contract between views and models. You need to specify a controller in the URL (read 
+		<a href="./urls.html" target="_blank">EZPHP URLs</a> for more) so that it performs its task.
+		<br /><br />
+		
+		Controllers are stored in <strong>content/controllers</strong> folder (or sub-folders).
+		<br />
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Controller Class Structure</div>
+		<div class="spacer">.</div>
+		Here is the structure of a typical EZPHP controller class:
+		
+		<textarea name="code" class="PHP">
+		class name_controller extends controller
+		{
+			function index()
+			{
+				// code here
+			}
+		}	
+		</textarea>
+		
+		<strong>_controller</strong> suffix is added to the name of the controllers. You should replace the <strong>name</strong> prefix in the <strong>name</strong>_controller above with the controller file name without extention.
+		Let's say you have controller file name <strong>controllers/home.php</strong> then you must create
+		a structure for it like this:
+	
+		<textarea name="code" class="php">
+		class home_controller extends controller
+		{
+			function index()
+			{
+				echo 'Hello EZPHP !';
+			}
+		}	
+		</textarea>
+		As can be seen above, every controller must have an <strong>index()</strong> function which is run by default when controller
+		is accessed by EZPHP. Notice also that each controller class <strong>extends</strong> its parent controller class.
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Controller Functions</div>
+		<div class="spacer">.</div>
+		
+		Apart from <strong>index()</strong>  function (which is run by default when page is viewed), you can also create more
+		functions inside the controller. For example, you can show the <strong>'Hello EZPHP'</strong> message like this as well:
+	
+	
+		<textarea name="code" class="PHP">
+		class message_controller extends controller
+		{
+			function index()
+			{
+				echo 'Welcomt to EZPHP !';
+			}
+			
+			function hello()
+			{
+				echo 'Hello EZPHP !';
+			}
+			
+		}	
+		</textarea>
+	
+		For this to work, you should create a controller file <strong>message.php</strong> in the <strong>content/controllers</strong>
+		folder with above code in it. Now you should go to following URL to run the <strong>hello()</strong> function.
+	
+		<div class="border">
+		http://yoursite.com/index.php?route=message/hello/
+		</div>
+		
+		If everything went fine, you should see on your screen:
+		<span class="key">Hello EZPHP !</span>
+		<br /><br />
+		If however, you went to following URL:
+		<div class="border">
+		http://yoursite.com/index.php?route=message/index/
+		</div>
+		Or simply (Because <strong>index</strong> function is default function to be run if no function is specified in the URL)
+		<div class="border">
+		http://yoursite.com/index.php?route=message
+		</div>
+		You should see on your screen:
+		<span class="key">Welcome to EZPHP !</span>
+		<br /><br />
+		
+		<div class="bigspacer">.</div>
+		<div class="subbox">Function Parameters</div>
+		<div class="spacer">.</div>
+
+		
+		If there are more than two segments in the URL, they will be passed to the function as its parameters.
+		Suppose you have a URL like this:
+		
+		<div class="border">
+		http://yoursite.com/index.php?route=catalog/product/shirts/latest/100
+		</div>
+		
+		The segments 3, 4 and 5 (<strong>shirts</strong> , <strong>latest</strong> and <strong>100</strong>) will be passed to
+		<strong>product</strong> function of <strong>catalog</strong> controller as its parameters:
+	
+		<textarea name="code" class="PHP">
+		class catalog_controller extends controller
+		{
+			function product($product_type, $category, $id)
+			{
+				echo $product_type . '<br />';
+				echo $category . '<br />';
+				echo $id . '<br />';
+			}
+		}	
+		</textarea>
+	
+		As can be seen above, each of the parameter corresponds to url segments 3, 4 and 5, that is:<br /><br />
+		<strong>&rarr; $product_type</strong> contains <strong>shirts</strong><br />
+		<strong>&rarr; $category</strong> contains <strong>latest</strong><br />
+		<strong>&rarr; $id</strong> contains <strong>100</strong><br /><br />
+		So you can use function parameters this way directly. You can also get url segments 3, 4 and 5 with some
+		indirect methods as shown below.
+
+		<textarea name="code" class="PHP">
+		class catalog_controller extends controller
+		{
+			function product($product_type, $category, $id)
+			{
+				// Method One
+				echo $this->uri->parts[2] . '<br />';
+				echo $this->uri->parts[3] . '<br />';
+				echo $this->uri->parts[4] . '<br />';
+
+				// Method Two
+				echo $this->uri->part(2) . '<br />';
+				echo $this->uri->part(3) . '<br />';
+				echo $this->uri->part(4) . '<br />';
+
+				// Method Three
+				$args = ezphp::ez_get('arguments');
+				echo $args[0] . '<br />';
+				echo $args[1] . '<br />';
+
+				// Method Four
+				echo $this->shirts . '<br />';
+				echo $this->latest . '<br />';
+				echo $this->{100} . '<br />';
+			}
+		}	
+		</textarea>
+		
+		For the method one and two above, the uri class has been used, read more about it <a href="./../core/uri.html" target="_blank">here</a>.
+		
+		<br /><br /><br />
+		Please note that you can not pass parameters to the <strong>index</strong> function directly,
+		you need to make sure that:
+		<br /><br />
+		
+		<ul>
+			<li>URI contains the index in the second segment. </li>
+		</ul>
+		<br />
+		
+		For example, we can do the same thing like above <strong>product</strong> function using <strong>index</strong> function 
+		like this:
+
+		<textarea name="code" class="PHP">
+		class catalog_controller extends controller
+		{
+			function index($product_type, $category, $id)
+			{
+				echo $product_type . '<br />';
+				echo $category . '<br />';
+				echo $id . '<br />';				
+			}
+		}	
+		</textarea>
+
+		Alternatively, we can call the <strong>product</strong> function inside the <strong>index</strong> function:
+
+		<textarea name="code" class="PHP">
+		class catalog_controller extends controller
+		{
+			function index($product_type, $category, $id)
+			{
+				$this->product($product_type, $category, $id);
+			}
+		}	
+		</textarea>
+		
+		Now you need to visit a URI like below to make parameters available to the <strong>index</strong> function:
+
+		<div class="border">
+		http://yoursite.com/index.php?route=catalog/index/shirts/latest/100
+		</div>
+	
+		<div class="bigspacer">.</div>
+		<div class="subbox">Setting a Default Controller</div>
+		<div class="spacer">.</div>
+		
+		If you have not specified the controller segment in the URL, the default controller will be used.
+		You can set the default controller from <strong>config/config.php</strong> file.
+		<br /><br />
+		
+		<span class="key">
+			default_controller = "home"	
+		</span>
+		<br /><br />
+		Default controller is usually set for the homepage of your site. For example, if you navigate to
+		following URL with no controller specified:
+	
+		<div class="border">
+		http://yoursite.com/index.php
+		</div>
+		
+		In effect, it is the same as going to the following URL:
+	
+		<div class="border">
+		http://yoursite.com/index.php?route=home
+		</div>
+		
+		For this to work, you should create a controller class file <strong>home.php</strong> inside the
+		<strong>content/controllers</strong> folder.
+	
+		<div class="bigspacer">.</div>
+		<div class="subbox">Private Functions</div>
+		<div class="spacer">.</div>
+		
+		If you want a certain function not to be served from URL and you want to use it internally in the controller,
+		you should either:<br /><br />
+		&rarr; Declare your function as <strong>private</strong> or<br />
+		&rarr; Prefix its name with the <strong>private_</strong><br />
+		<br />
+		As an example, following functions can't be served from URL.
+		<br />
+	
+		<textarea name="code" class="PHP">
+		private function test()
+		{
+			// code here
+		}	
+		
+		function private_test()
+		{
+			// code here
+		}	
+		</textarea>
+	
+		If you have placed above functions in <strong>home</strong> controller and go to this URL, it will produce <strong>'Page Not Found'</strong> error.
+		
+		<div class="border">
+		http://yoursite.com/index.php?route=home/private_test
+		</div>
+
+		<div class="bigspacer">.</div>
+		<div class="subbox">Putting Controllers in Sub-Directories</div>
+		<div class="spacer">.</div>
+		If you want, you can put controllers in sub-directories as well. If you do so,
+		you will have to specify the name of the directory/folder in URLs. Let's say
+		you put a controller in <strong>content/controllers/myfolder/mycontroller.php</strong>
+		then this is how you can run it:
+		
+		<div class="border">
+		http://yoursite.com/index.php?route=myfolder/mycontroller
+		</div>
+
+		As can be guessed:
+		<ul>
+			<li>First segment is <strong>folder</strong></li>
+			<li>Second segment is <strong>controller</strong></li>
+			<li>And third segment will be controller's <strong>function</strong> to be called</li>
+			<li>And fourth segment will be <strong>parameters</strong> passed to that function</li>
+		</ul>
+		<br />
+		
+		You can go any hierarchy of folders in this way but of course it will make your URLs
+		longer.
+		
+		
+
+		<!-- Bottom Navigation -->
+		<div class="bigspacer">.</div>
+		<div class="bigspacer">.</div>
+		<div id="bottom_nav">
+			<div>
+				<span>&larr;&nbsp;<a href="./routing.html">URI Routing</a></span>
+				<span>&uarr;&nbsp;<a href="#menu">Top</a></span>
+				<span><a href="./models.html">Models</a>&nbsp;&rarr;</span>
+			</div>			
+		</div>
+		<div class="spacer">.</div>
+		<!-- Bottom Navigation End -->
+		
+		<div id="copyright">
+			EZPHP &copy 2010. All Rights Reserved.
+		</div>
+		
+	</div>
+</div>
+
+	
+</body>
+<script type="text/javascript" src="./jinclude.js"></script>
+<script type="text/javascript">
+	document.getElementById('menu').innerHTML = '<ul><li>Loading...</li></ul>';
+	// include the menu	
+	jinclude('./menu.html', 'menu');
+</script>
+
+<script type="text/javascript" src="./../js/shCore.js"></script>
+<script type="text/javascript" src="./../js/shBrushPhp.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</html>

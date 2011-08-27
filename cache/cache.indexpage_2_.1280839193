@@ -1,0 +1,61 @@
+s:1830:"<table align="center" width="97%" cellpadding="5" cellspacing="0" bgcolor="#f6f6f6" style="border:1px solid #cccccc;">
+	<caption align="center" style="font-weight:bold; font-size:18px; color:#006600;">Our Products</caption>
+	
+	<tr>
+		<td style="font-weight:bold; color:#0066FF;">Product Name</td>
+		<td style="font-weight:bold; color:#0066FF;">Price</td>
+		<td style="font-weight:bold; color:#0066FF;">Stock</td>
+		<td style="font-weight:bold; color:#0066FF;">Active</td>
+	</tr>
+
+		<tr>
+		<td bgcolor="#cccccc">Uncle Bob Organic Dried Pears</td>
+		<td bgcolor="#cccccc">30</td>
+		<td bgcolor="#cccccc">15</td>
+		<td bgcolor="#cccccc">Yes</td>
+	</tr>
+		<tr>
+		<td bgcolor="#f6f6f6">Northwoods Cranberry Sauce</td>
+		<td bgcolor="#f6f6f6">40</td>
+		<td bgcolor="#f6f6f6">6</td>
+		<td bgcolor="#f6f6f6">Yes</td>
+	</tr>
+		<tr>
+		<td bgcolor="#cccccc">Mishi Kobe Niku</td>
+		<td bgcolor="#cccccc">97</td>
+		<td bgcolor="#cccccc">29</td>
+		<td bgcolor="#cccccc">No</td>
+	</tr>
+		
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="4">
+			<div style="float:left;">
+				
+Showing results <strong>7</strong> to <strong class = 'site_message'>9</strong> of <strong class = 'site_message'>9</strong>
+			</div>
+			<div style="float:right;">
+				 <a href="/EZPHP_SVN/index.php?page=1&&" class = 'site_message'>&laquo; Prev </a>  <a href="/EZPHP_SVN/index.php?page=0&&" class = 'site_message'>1</a>  <a href="/EZPHP_SVN/index.php?page=1&&" class = 'site_message'>2</a> 3 Next &raquo;			</div>
+		</td>
+	</tr>
+
+<!--
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+	<tr>
+		<td colspan="4">
+						
+			<div align="center">
+				<img src="./template/default/images/girl_100x100.jpg" />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" height="15"></td>
+	</tr>
+-->
+</table>";
