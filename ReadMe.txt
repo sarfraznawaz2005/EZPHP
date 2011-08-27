@@ -1,3 +1,65 @@
+CONTENTS
+    + Introduction
+    + Features
+    + Goals
+    + Running Sample Application
+
+
+
+Note: For full documentation, please check out the "docs" folder present inside the framework.
+
+
+Introduction
+=============================================================
+
+EZPHP is an easy-to-use MVC-based framework allowing you to develop applications much faster than doing it from scratch by providing you with ready-made libraries and utility classes. It comes with a mechanism to easily develop your applications in OOP way even if you are not much familiar with it. EZPHP aims to be light-weight, fast and easy to use thereby targeted to those who want to get the framework complexities out of the their way and start writing the application fast from day one.
+
+If you are looking to quickly develop a website, EZPHP provides you with easier MVC and OOP approach with handy library and helper classes to get the job done fast. Or if you don't want to learn or use some hard to use/learn frameworks available, EZPHP then most probably becomes your definite choice. 
+
+
+Features
+=============================================================
+
+    Easy to Use
+    Fast
+    Light Weight
+    Object Oriented Programming
+    Model View Controller (MVC) Design Pattern
+    Security And XSS Filtering
+    Easily Extendible
+    Very Short Learning Curve
+    URI Routing
+    Built-In MySQL Wrapper
+    Data Validation
+    Multiple Template System
+    Emailer Class
+    Image Manipulation
+    Captcha Creation
+    File Upload Class
+    Paging Class
+    Caching
+    Search Engine Friendly URLs
+    Timing Scripts
+    RSS Generation
+    Browser Detection
+    And More Utility Classes...
+
+
+
+Goals
+=============================================================
+
+The EZPHP has been designed with the following goals:
+
+    Light Weight
+    Fast
+    Easy To Use
+
+
+
+Running Sample Application:
+=============================================================
+
 To be able to run this sample demo app of EZPHP, please create a database by the name of 
 "ezphpdb" and execute following quries in that. Finally edit the db settings in config/config.php file.
 -----------------------------------------------------------------------------------------------
